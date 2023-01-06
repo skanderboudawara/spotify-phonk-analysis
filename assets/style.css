@@ -1,0 +1,17 @@
+
+@font-face {
+  font-family: “Segoe”;
+  src: url(“fonts/Gotham-Bold.otf”) format(“truetype”);
+  }
+
+body{
+  background-color: black;
+  margin: 2%;
+}
+
+  
+*, html, body {
+  color:white;
+font-family: “Segoe”, sans-serif;
+}
+
