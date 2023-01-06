@@ -205,9 +205,7 @@ class PhonkData:
             if country_iso != "GLOBAL":
                 link_image = f"https://raw.githubusercontent.com/matahombres/CSS-Country-Flags-Rounded/master/flags/{country_iso}.png"
             else:
-                link_image = Image.open(
-                    "/Users/skanderboudawara/Desktop/GitHub/Data projects/spotify-phonk-analysis/assets/img/GLOBAL.png"
-                )
+                link_image = Image.open("assets/img/GLOBAL.png")
             fig.add_layout_image(
                 dict(
                     source=link_image,
