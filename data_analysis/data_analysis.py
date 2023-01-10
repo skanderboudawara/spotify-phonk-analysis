@@ -18,7 +18,11 @@ class PhonkData:
         )
 
     def get_date_ranges_figures(self):
+        """
+        Generate figure based on dates
 
+        :return: (tuple), dash figures
+        """
         df_date = self.df.copy()
 
         df_date = (
@@ -90,6 +94,11 @@ class PhonkData:
         return figure1, figure2
 
     def get_best_artists(self):
+        """
+        get Barchart of best artists
+
+        :return: (Dash figure)
+        """
         df_artist = self.df.copy()
         df_artist["artists"] = df_artist["artists"].apply(literal_eval)
         df_artist = (
@@ -100,7 +109,6 @@ class PhonkData:
         )
         df_artist["artists"] = df_artist["artists"].astype(str)
         df_artist = df_artist.nlargest(10, "streams")
-        df_artist
 
         trace_artist = go.Bar(
             x=df_artist["artists"],
@@ -133,6 +141,11 @@ class PhonkData:
         return fig
 
     def get_explicit_content(self):
+        """
+        Pie chart for explicit content
+
+        :return: (Dash)
+        """
         df_explicit = self.df.copy()
 
         df_explicit = (
@@ -178,7 +191,11 @@ class PhonkData:
         )
 
     def get_scatter_country(self):
+        """
+        Scatter plot country / streams
 
+        :return: (Dash)
+        """
         df_country = (
             self.df.copy()
             .groupby("country")
@@ -187,7 +204,6 @@ class PhonkData:
         )
         df_country = df_country.nlargest(10, "streams")
         df_country["country"] = df_country["country"].str.upper()
-        df_country
 
         fig = px.scatter(
             df_country,
@@ -198,9 +214,9 @@ class PhonkData:
         )
         fig.update_traces(marker_color="rgba(0,0,0,0)")
 
-        minDim = df_country[["counter", "streams"]].max().idxmax()
-        maxi = df_country[minDim].max()
-        for i, row in df_country.iterrows():
+        min_dim = df_country[["counter", "streams"]].max().idxmax()
+        maxi = df_country[min_dim].max()
+        for row in df_country.iterrows():
             country_iso = row["country"]
             if country_iso != "GLOBAL":
                 link_image = f"https://raw.githubusercontent.com/matahombres/CSS-Country-Flags-Rounded/master/flags/{country_iso}.png"

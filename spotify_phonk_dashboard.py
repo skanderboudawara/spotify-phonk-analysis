@@ -1,6 +1,5 @@
 # visit http://127.0.0.1:8050/ in your web browser.
 
-
 import dash_bootstrap_components as dbc
 from dash import Dash, dcc, html
 
@@ -11,6 +10,13 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 
 def get_figure_and_title(title_figure, figure_plot):
+    """
+    get the title and the figure
+
+    :param title_figure: (str), title of figure
+    :param figure_plot: (dash figure), figure
+    :return: (dash)
+    """
     # Figure 1
     title = html.H5(
         title_figure,
@@ -36,6 +42,11 @@ def get_figure_and_title(title_figure, figure_plot):
 
 
 def get_header():
+    """
+    get header
+
+    :return: (dash)
+    """
     # Header
     return html.H1(
         "PHONK Data analysis",
@@ -50,6 +61,11 @@ def get_header():
 
 
 def get_phonk_description():
+    """
+    get phonk description
+
+    :return: (tuple)
+    """
     # Title Genra description
     title = html.H5(
         "Genra description:",
@@ -72,6 +88,11 @@ def get_phonk_description():
 
 
 def get_logo():
+    """
+    get the logo
+
+    :return: (Div)
+    """
     return html.Div(
         [
             # Spotify Lgo
@@ -88,6 +109,11 @@ def get_logo():
 
 
 def main_app():
+    """
+    main Phonk analysis dashboard
+
+    :return: (app)
+    """
     df_phonk = PhonkData()
     figure1, figure2 = df_phonk.get_date_ranges_figures()
     app.layout = html.Div(
