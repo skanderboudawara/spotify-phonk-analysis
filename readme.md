@@ -1,21 +1,23 @@
-# Spotify Phonk analysis dashboard
+# Spotify Phonk Analysis Dashboard
 
-### Tools used:
+## Tools used:
 - Plotly
 - Dash
 - Pandas
 - Python
 
-### Preview:
-<center><img src="dashboard.jpg" alt="preview"></center>
+## Preview:
+<center><img src="dashboard.jpg" alt="Preview"></center>
 
-### Description:
-Phonks is a Music genra that I started listening to when practicing my Gym sessions 💪. 
+## Description:
+As a music lover, I've been listening to Phonk music for quite some time now, especially during my gym sessions 💪. 
 
-I wanted to investigate some data related to this genra on spotify and It was a way for me to learn Dash/Plotly that is a great library.
+I wanted to dive deeper into the data behind this genre on Spotify and learn more about Dash and Plotly, a powerful data visualization library.
 
-I decided to focus on 4 plots:
-- The count of phonk tracks of the years 
-- The streams of phonk over the years
-- A scatter plot to see if there is a relation between the number of tracks released and streams over the country
-- A pie chart to see the percentage of explicit content in Phonk music
+I created a dashboard to analyze Phonk music on Spotify, focusing on the following aspects:
+- Yearly count of Phonk tracks 
+- Streams of Phonk tracks over the years
+- Relationship between the number of tracks released and streams by country
+- Percentage of explicit content in Phonk music
+
+Not only was this project a fun way to dive deeper into the world of Phonk music, but it also allowed me to improve my skills in data analysis and visualization using Dash and Plotly.
