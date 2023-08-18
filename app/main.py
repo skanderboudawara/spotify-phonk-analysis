@@ -2,7 +2,6 @@
 
 import dash_bootstrap_components as dbc
 from dash import Dash, dcc, html
-
 from data_analysis.data_analysis import PhonkData
 from src.wikipedia import get_def
 
@@ -184,4 +183,4 @@ def main_app():
 
 if __name__ == "__main__":
     app = main_app()
-    app.run_server(debug=False, use_reloader=False)
+    app.run_server(debug=False, use_reloader=False, port=8000, host="0.0.0.0")

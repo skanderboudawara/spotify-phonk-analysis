@@ -13,9 +13,7 @@ class PhonkData:
     """
 
     def __init__(self):
-        self.df = pd.read_csv(
-            "data_analysis/spotify_phonk.csv", encoding="utf-8"
-        )
+        self.df = pd.read_csv("./app/data_analysis/spotify_phonk.csv", encoding="utf-8")
 
     def get_date_ranges_figures(self):
         """
@@ -25,11 +23,7 @@ class PhonkData:
         """
         df_date = self.df.copy()
 
-        df_date = (
-            df_date.groupby("date")
-            .agg({"counter": sum, "streams": sum})
-            .reset_index()
-        )
+        df_date = df_date.groupby("date").agg({"counter": sum, "streams": sum}).reset_index()
 
         figure1 = go.Figure(
             go.Scatter(
@@ -101,12 +95,7 @@ class PhonkData:
         """
         df_artist = self.df.copy()
         df_artist["artists"] = df_artist["artists"].apply(literal_eval)
-        df_artist = (
-            df_artist.explode("artists")
-            .groupby("artists")
-            .agg({"counter": sum, "streams": sum})
-            .reset_index()
-        )
+        df_artist = df_artist.explode("artists").groupby("artists").agg({"counter": sum, "streams": sum}).reset_index()
         df_artist["artists"] = df_artist["artists"].astype(str)
         df_artist = df_artist.nlargest(10, "streams")
 
@@ -119,9 +108,7 @@ class PhonkData:
         fig.update_layout(
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
-            xaxis=dict(
-                showgrid=False, color="white", categoryorder="total ascending"
-            ),
+            xaxis=dict(showgrid=False, color="white", categoryorder="total ascending"),
             margin=go.layout.Margin(
                 l=0,  # left margin
                 r=0,  # right margin
@@ -148,9 +135,7 @@ class PhonkData:
         """
         df_explicit = self.df.copy()
 
-        df_explicit = (
-            df_explicit.groupby("explicit").agg({"counter": sum}).reset_index()
-        )
+        df_explicit = df_explicit.groupby("explicit").agg({"counter": sum}).reset_index()
 
         df_explicit["color"] = df_explicit.explicit.apply(
             lambda x: "#F230AA" if x else "#00D56C",
@@ -196,12 +181,7 @@ class PhonkData:
 
         :return: (Dash)
         """
-        df_country = (
-            self.df.copy()
-            .groupby("country")
-            .agg({"counter": sum, "streams": sum})
-            .reset_index()
-        )
+        df_country = self.df.copy().groupby("country").agg({"counter": sum, "streams": sum}).reset_index()
         df_country = df_country.nlargest(10, "streams")
         df_country["country"] = df_country["country"].str.upper()
 
@@ -217,11 +197,11 @@ class PhonkData:
         min_dim = df_country[["counter", "streams"]].max().idxmax()
         maxi = df_country[min_dim].max()
         for row in df_country.iterrows():
-            country_iso = row["country"]
+            country_iso = row[1].country
             if country_iso != "GLOBAL":
                 link_image = f"https://raw.githubusercontent.com/matahombres/CSS-Country-Flags-Rounded/master/flags/{country_iso}.png"
             else:
-                link_image = Image.open("assets/img/GLOBAL.png")
+                link_image = Image.open("./app/assets/img/GLOBAL.png")
             fig.add_layout_image(
                 dict(
                     source=link_image,
@@ -229,16 +209,10 @@ class PhonkData:
                     yref="y",
                     xanchor="center",
                     yanchor="middle",
-                    x=row["counter"],
-                    y=row["streams"],
-                    sizex=np.sqrt(row["streams"] / df_country["streams"].max())
-                    * maxi
-                    * 0.15
-                    + maxi * 0.03,
-                    sizey=np.sqrt(row["streams"] / df_country["streams"].max())
-                    * maxi
-                    * 0.15
-                    + maxi * 0.03,
+                    x=row[1]["counter"],
+                    y=row[1]["streams"],
+                    sizex=np.sqrt(row[1]["streams"] / df_country["streams"].max()) * maxi * 0.15 + maxi * 0.03,
+                    sizey=np.sqrt(row[1]["streams"] / df_country["streams"].max()) * maxi * 0.15 + maxi * 0.03,
                     sizing="contain",
                     opacity=0.8,
                     layer="above",

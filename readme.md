@@ -21,3 +21,9 @@ I created a dashboard to analyze Phonk music on Spotify, focusing on the followi
 - Percentage of explicit content in Phonk music
 
 Not only was this project a fun way to dive deeper into the world of Phonk music, but it also allowed me to improve my skills in data analysis and visualization using Dash and Plotly.
+
+## To run using Docker
+
+`docker build -t phonk-spotify .`
+
+`docker run -p 8000:8000 phonk-spotify`
