@@ -183,4 +183,4 @@ def main_app():
 
 if __name__ == "__main__":
     app = main_app()
-    app.run_server(debug=False, use_reloader=False, port=8000, host="0.0.0.0")
+    app.run(debug=False, use_reloader=False, port=8000, host="0.0.0.0")

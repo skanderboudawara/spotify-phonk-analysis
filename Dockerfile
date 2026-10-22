@@ -1,12 +1,12 @@
-FROM python:3.11.4
+FROM python:3.14-alpine
 
 WORKDIR /phonk-spotify
 
 COPY requirements.txt .
-
-RUN pip install -r requirements.txt
+RUN apk upgrade --no-cache && pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 COPY ./app ./app
 
-CMD ["python", "./app/main.py"]
+EXPOSE 8000
 
+CMD ["python", "./app/main.py"]
